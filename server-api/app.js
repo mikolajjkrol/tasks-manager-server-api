@@ -10,7 +10,7 @@ app.use(express.json()); // Parse JSON requests
 app.get('/', async (req, res)=>{
 
   res.status(200).send(await fs.readFile('./index.html', 'utf-8'));
-  
+
 });
 
 app.get('/tasks', async (req, res)=>{
@@ -24,7 +24,17 @@ app.get('/tasks', async (req, res)=>{
   }
 });
 
+app.put('/tasks', async (req, res) => {
+  try {
+    const newTasks = req.body; // Get task data from frontend
 
+    await fs.writeFile('./data/user-data.json', JSON.stringify(newTasks)); // Save back to file
+
+    res.status(201).json({ message: 'Task added successfully', newTasks });
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding task', error: error.message });
+  }
+})
 
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
