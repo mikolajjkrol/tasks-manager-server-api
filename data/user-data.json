@@ -1,0 +1,10 @@
+[{
+"date": "2025-08-02",
+"description": "Przykladowy task wziety z serwera poprzez GET",
+"isChecked": false,
+"isLate": false,
+"time": "",
+"title": "PRZYKLAD 1",
+"who": "xyz"
+}
+]
